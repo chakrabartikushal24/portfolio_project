@@ -169,6 +169,15 @@ GROUP BY DATEPART(HOUR,started_at), member_casual
 ORDER BY DATEPART(HOUR,started_at), member_casual;
 
 
+-- we also try to find the number of rides initiated by user types in each month to find seasonal difference if any
+
+SELECT member_casual, DATEPART(MONTH, started_at) AS month, COUNT(*) AS customer_count,
+COUNT(*)*100.0/SUM(COUNT(*)) OVER () AS ride_month_percentage
+FROM cyclistic_year_data
+GROUP BY DATEPART(MONTH, started_at), member_casual
+ORDER BY DATEPART(MONTH, started_at), member_casual
+
+
 -- MAX and MIN ride durations
 
 SELECT member_casual, MAX(duration) as max_duration, MIN(duration) AS min_duration
