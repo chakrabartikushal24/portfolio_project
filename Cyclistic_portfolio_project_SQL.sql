@@ -111,7 +111,7 @@ SET day_of_the_week = DATENAME(WEEKDAY, started_at)
 
 SELECT member_casual, COUNT(member_casual) -- This query gives us the breakdown of total observations for customer type
 FROM cyclistic_year_data
-GROUP BY member_casual
+GROUP BY member_casual;
 
 
 -- to calculate the percentage from total observations of casual and member riders in our data
@@ -119,7 +119,7 @@ GROUP BY member_casual
 SELECT member_casual, COUNT(*) as customer_type_count, 
 COUNT(*)*100.0/ SUM(COUNT(*)) over () AS customer_type_percentage
 FROM cyclistic_year_data
-GROUP BY member_casual
+GROUP BY member_casual;
 
 -- hence it is observed that 56.64% of the total rides started in the 1 year data is by members and 43.36% is by casual members
 
@@ -130,7 +130,7 @@ SELECT member_casual, rideable_type, COUNT(*) as ride_type_count,
 COUNT(*)*100.0/SUM(COUNT(*)) OVER () as ride_type_percentage
 FROM cyclistic_year_data
 GROUP BY rideable_type, member_casual
-ORDER BY rideable_type, member_casual
+ORDER BY rideable_type, member_casual;
 
 
 -- We also try to find the same data as above but by the hour of the day
@@ -139,7 +139,7 @@ SELECT member_casual, rideable_type, DATEPART(HOUR, started_at) AS time_of_day, 
 COUNT(*)*100.0/SUM(COUNT(*)) OVER () as ride_type_percentage
 FROM cyclistic_year_data
 GROUP BY DATEPART(HOUR, started_at), rideable_type, member_casual
-ORDER BY DATEPART(HOUR, started_at), rideable_type, member_casual
+ORDER BY DATEPART(HOUR, started_at), rideable_type, member_casual;
 
 --similarly we also try to find the data for each day of the week for the bike type for each user type
 
@@ -147,7 +147,7 @@ SELECT member_casual, rideable_type, day_of_the_week, COUNT(*) as ride_type_coun
 COUNT(*)*100.0/SUM(COUNT(*)) OVER () as ride_type_percentage
 FROM cyclistic_year_data
 GROUP BY day_of_the_week, member_casual, rideable_type
-ORDER BY day_of_the_week, member_casual, rideable_type
+ORDER BY day_of_the_week, member_casual, rideable_type;
 
 
 -- We also try to check the percentage of rides started on different days of the week for each customer type
@@ -157,7 +157,7 @@ COUNT(*)*100.0/ SUM(COUNT(*)) over () AS day_ride_percentage
 FROM cyclistic_year_data
 --WHERE day_of_the_week = 'Sunday'
 GROUP BY day_of_the_week, member_casual
-ORDER BY day_of_the_week, member_casual
+ORDER BY day_of_the_week, member_casual;
 
 
 -- now we want to check the rides initiated during the day by each customer type to find if there is any pattern that can be seen
@@ -166,14 +166,14 @@ SELECT member_casual, DATEPART(HOUR,started_at) AS hour_of_the_day, COUNT(*) AS 
 COUNT(*)*100.0/SUM(COUNT(*)) OVER () AS day_ride_percentage
 FROM cyclistic_year_data
 GROUP BY DATEPART(HOUR,started_at), member_casual
-ORDER BY DATEPART(HOUR,started_at), member_casual
+ORDER BY DATEPART(HOUR,started_at), member_casual;
 
 
 -- MAX and MIN ride durations
 
 SELECT member_casual, MAX(duration) as max_duration, MIN(duration) AS min_duration
 FROM cyclistic_year_data
-GROUP BY member_casual
+GROUP BY member_casual;
 
 
 -- Now we will check the the average duration of ride by different user type
@@ -181,7 +181,7 @@ GROUP BY member_casual
 --First to check the average ride duration and the standard deviation in duration for each user type
 SELECT member_casual, AVG(duration) as average_duration, STDEV(duration) AS standard_deviation
 FROM cyclistic_year_data
-GROUP BY member_casual
+GROUP BY member_casual;
 
 
 
