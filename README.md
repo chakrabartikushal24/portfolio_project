@@ -1,4 +1,4 @@
-# portfolio_project
+# Portfolio_project
 This repository stores my data analysis portfolio projects
 
 The portfolio projects that have been completed and stored in this repository till now :-
